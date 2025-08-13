@@ -9,7 +9,7 @@ public class circle_floor : MonoBehaviour
     [SerializeField] private Color AbadonedColour;
     [SerializeField] private Color DangerousColour;
 
-    [SerializeField] private SpriteRenderer renderer;
+    [SerializeField] private SpriteRenderer Renderer;
 
     [SerializeField] private GameObject highlight;
 
@@ -18,16 +18,16 @@ public class circle_floor : MonoBehaviour
         switch (difficulty)
         {
             case 0:
-                renderer.color = EasyColour;
+                Renderer.color = EasyColour;
                 break;
             case 1:
-                renderer.color = NormalColour;
+                Renderer.color = NormalColour;
                 break;
             case 2:
-                renderer.color = DangerousColour;
+                Renderer.color = DangerousColour;
                 break;
             case 3:
-                renderer.color = AbadonedColour;
+                Renderer.color = AbadonedColour;
                 break;
         }
     }
