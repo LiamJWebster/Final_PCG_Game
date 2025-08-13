@@ -12,29 +12,29 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color enemySpawn;
     [SerializeField] private Color PlayerSpawn;
 
-    [SerializeField] private SpriteRenderer  renderer;
+    [SerializeField] private SpriteRenderer  Renderer;
 
     public void Init(int isWall)
     {
         switch (isWall)
         {
             case 0:
-                renderer.color = WallColour;
+                Renderer.color = WallColour;
                 break;
             case 1:
-                renderer.color = baseColour;
+                Renderer.color = baseColour;
                 break;
             case 2:
-                renderer.color = ConnectColour;
+                Renderer.color = ConnectColour;
                 break;
             case 3:
-                renderer.color = StairsColour;
+                Renderer.color = StairsColour;
                 break;
             case 4:
-                renderer.color = enemySpawn;
+                Renderer.color = enemySpawn;
                 break;
             case 5:
-                renderer.color = PlayerSpawn;
+                Renderer.color = PlayerSpawn;
                 break;
 
         }
