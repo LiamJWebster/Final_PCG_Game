@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Bar_Slider healthbar;
+   
 
     public static GameManager Instance;
+    [SerializeField] private GridManagerV2 GridManagerV2 = null;
+    public Bar_Slider healthbar;
 
     public GameState State;
 
@@ -31,8 +33,10 @@ public class GameManager : MonoBehaviour
         switch (newState) 
         {
             case GameState.GenerateRoom:
+                GridManagerV2.GenerateTestingRoom(GridManagerV2._width, GridManagerV2._height, GridManagerV2._minSize, GridManagerV2._MaxX, GridManagerV2._MaxY);
                 break;
             case GameState.SpawnHeroes:
+                Debug.Log("cock");
                 break;
             case GameState.SpawnEnemies:
                 break;
@@ -55,14 +59,13 @@ public class GameManager : MonoBehaviour
         SpawnEnemies = 2,
         PlayerTurn = 3,
         EvilTurn = 4,
-        NeutralTurn = 5,
-
-    
+        NeutralTurn = 5,    
     }
 
     void Start()
     {
         healthbar.SetMaxValue(50);
+        ChangeState(GameState.GenerateRoom);
     }
 
     // Update is called once per frame

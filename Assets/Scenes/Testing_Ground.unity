@@ -1189,6 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a747e839d47473643a5c124975feb782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GridManagerV2: {fileID: 739227899}
   healthbar: {fileID: 1837073858}
   State: 0
 --- !u!4 &293376236
@@ -2041,12 +2042,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3441c2a1af3fded4385a06d3081d17b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 3319240453233663497, guid: 5e715757fefae18428d465fb2b772f8b, type: 3}
   playerPrefab: {fileID: 5071635521649968, guid: a52859d36e585c24b877ec55b4c33c31, type: 3}
   enemyPrefab: {fileID: 8507532137093873828, guid: 8ebdcb294ef5ca549987fcb241f6c501, type: 3}
   Cam: {fileID: 197812850}
   m_OrthographicCamera: {fileID: 197812849}
   Grid_Manager: {fileID: 739227898}
+  _Floor: {fileID: -4194529368041283416, guid: 6ed9415450319264988cf7e76e5bb129, type: 3}
+  _Wall: {fileID: -8343716033245555808, guid: 5da3beedef4594d4485a6ad19e5b175b, type: 3}
+  _Water: {fileID: 5242871367505751285, guid: 5a81e77406ab1b841af10b4ab6bb6945, type: 3}
   _width: 12
   _height: 12
   _minSize: 8

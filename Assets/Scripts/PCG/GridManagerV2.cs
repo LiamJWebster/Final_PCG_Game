@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
 public class GridManagerV2 : MonoBehaviour
 {
-    [SerializeField] private Tile tilePrefab;
-
     [SerializeField] private Player playerPrefab;
     [SerializeField] private Enemy enemyPrefab;
 
@@ -14,14 +13,19 @@ public class GridManagerV2 : MonoBehaviour
 
     [SerializeField] private Transform Grid_Manager;
 
+    [Header("Tiles")]
+    [SerializeField] private Tile _Floor;
+    [SerializeField] private Tile _Wall;
+    [SerializeField] private Tile _Water;
+    //[SerializeField] private Tile Floor;
 
     [Header("Generation Settings")]
-    [SerializeField] private int _width = 12;
-    [SerializeField] private int _height = 12;
-    [SerializeField] private int _minSize = 8;
-    [SerializeField] private int _MaxX = 8;
-    [SerializeField] private int _MaxY = 8;
-    [SerializeField] private int _padding = 0;
+    [SerializeField] public int _width = 12;
+    [SerializeField] public int _height = 12;
+    [SerializeField] public int _minSize = 8;
+    [SerializeField] public int _MaxX = 8;
+    [SerializeField] public int _MaxY = 8;
+    [SerializeField] public int _padding = 0;
 
     public enum levelObjects
     {
@@ -44,9 +48,6 @@ public class GridManagerV2 : MonoBehaviour
         int xStart = Random.Range(padding, width - xSize - padding + 1);
         int yStart = Random.Range(padding, height - ySize - padding + 1);
 
-        Debug.Log("Xstart " + xStart);
-        Debug.Log("Ystart " + yStart);
-
         floorCoord = GenerateRoom(xSize, ySize, xStart, yStart, width, height);
 
         floorCoord[5,5] = 5;
@@ -57,8 +58,11 @@ public class GridManagerV2 : MonoBehaviour
             for (int y = 0; y < height; y++)
             {
                 int value = floorCoord[x, y];
-                //Grid_Manager
-                var spawnedTile = Instantiate(tilePrefab, new Vector3(x, y), Quaternion.identity);
+
+                Tile toSpawn;
+                toSpawn = SelectTile(value);
+                
+                var spawnedTile = Instantiate(toSpawn, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
                 spawnedTile.transform.SetParent(Grid_Manager, true);
 
@@ -77,7 +81,7 @@ public class GridManagerV2 : MonoBehaviour
             }
         }
         // to be moved to game manager later 
-        
+        GameManager.Instance.ChangeState(GameManager.GameState.SpawnHeroes);
 
     }
 
@@ -170,8 +174,23 @@ public class GridManagerV2 : MonoBehaviour
         //GameManager.Instance.ChangeState(GameManager.GameState.SpawnHeroes);
     }*/
 
- 
+    private Tile SelectTile(int value)
+    {
+        if (value == 1)
+        {
+            return _Floor;
+        }
+        else if (value == 2)
+        {
+            return _Water;
+        }
+        else
+        {
+            return _Wall;
+        }
 
+    }
+ 
     static int[,] GenerateRoom(int xSize, int ySize, int xStart, int yStart, int width ,int length)
     {
         xSize = xStart + xSize;
@@ -200,8 +219,8 @@ public class GridManagerV2 : MonoBehaviour
 
     public void Start()
     {
-        GenerateTestingRoom(_width, _height, _minSize, _MaxX, _MaxY);
-        Debug.Log("YO!");
+        //GenerateTestingRoom(_width, _height, _minSize, _MaxX, _MaxY);
+        //Debug.Log("YO!");
         Cam.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
     }
 
