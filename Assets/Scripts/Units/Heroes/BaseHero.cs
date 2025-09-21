@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static BaseItem;
 
 public class BaseHero : BaseUnit
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int ExperiencePoints;
+    public int MaxExperiencePoints;
 
-    // Update is called once per frame
-    void Update()
+
+    public int armour;
+
+    public Sprite Sprite;
+
+    public void ItemPickup(ItemStats item)
     {
-        
+        _MaxActionPoints += item.ActionPoints;
+        _MeleeDamage += item.Melee;
+        _RangeDamage += item.Ranged;
+        _MaxHitpoints += item.Health;
+        _MaxMovementPoints += item.Movement;
+        armour += item.Armour;
     }
 }

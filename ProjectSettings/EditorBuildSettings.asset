@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Pre_Game.unity
     guid: 51bc28337c766e845a86162a75670d80
+  - enabled: 1
+    path: Assets/Scenes/Testing_Ground.unity
+    guid: c19c003195ea66b4f934ab53d4586796
+  - enabled: 1
+    path: Assets/Scenes/Dungeon_layout.unity
+    guid: b41925602984e094dbac5741f4c9e988
   m_configObjects: {}
