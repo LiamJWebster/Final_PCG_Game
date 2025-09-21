@@ -89,7 +89,7 @@ public class GridManager : MonoBehaviour
                 spawnedTile.name = $"Tile {x} {y}";
                 spawnedTile.transform.SetParent(Grid_Manager, true);
 
-                spawnedTile.Init(value);
+                spawnedTile.Init(value, new Vector2(x, y));//This has been added due to changes in Tile structure in the testing enviorment if I hit a dead end remove
 
                 if (value == 5)
                 {

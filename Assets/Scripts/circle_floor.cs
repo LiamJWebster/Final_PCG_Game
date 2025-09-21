@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Dungeon_generation;
 
 public class circle_floor : MonoBehaviour
 {
@@ -13,8 +14,35 @@ public class circle_floor : MonoBehaviour
 
     [SerializeField] private GameObject highlight;
 
-    public void Init(int difficulty)
+    [SerializeField] private int x;
+    [SerializeField] private int y;
+
+    [SerializeField] private int row;
+    [SerializeField] private int col;
+
+    [SerializeField] private bool selected;
+    [SerializeField] private bool selectable;
+
+
+    public void Init(int difficulty, int x, int y, bool selectable, int row , int col)
     {
+        this.x = x;
+        this.y = y;
+
+        this.row = row;
+        this.col = col;
+
+        this.selectable = selectable;
+
+        if (selectable)
+        {
+            selected = false;   
+        }
+        else
+        {
+            selected = true;
+            highlight.SetActive(true);
+        }
         switch (difficulty)
         {
             case 0:
@@ -24,10 +52,10 @@ public class circle_floor : MonoBehaviour
                 Renderer.color = NormalColour;
                 break;
             case 2:
-                Renderer.color = DangerousColour;
+                Renderer.color = AbadonedColour;
                 break;
             case 3:
-                Renderer.color = AbadonedColour;
+                Renderer.color = DangerousColour;
                 break;
         }
     }
@@ -39,12 +67,26 @@ public class circle_floor : MonoBehaviour
 
     void OnMouseExit()
     {
-        highlight.SetActive(false);
+        if (!selected)
+        {
+            highlight.SetActive(false);
+        }
+        
     }
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    private void OnMouseDown()
+    {
+        if (selectable)
+        {
+            selected = !selected;
+        }
+
+        Dungeon_generation.Instance.NodeClicked(row, col);
     }
 
     /*
